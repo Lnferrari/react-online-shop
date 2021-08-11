@@ -1,0 +1,28 @@
+.SubNavbar {
+  width: 100%;
+  padding: 5px 25px;
+  background-color: #ff541f;
+  color: white;
+  font-size: 80%;
+  display: flex;
+  align-items: center;
+  
+
+  .burgerMenu {
+    width: fit-content;
+    margin-left: -5px;
+    @include center;
+    @include borderHover;
+    // padding-left: 0;
+
+    span {
+      margin-left: 5px;
+      font-weight: bold;      
+    }
+  }
+
+  .link {
+    text-decoration: none;
+    @include borderHover;
+  }
+}

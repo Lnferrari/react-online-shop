@@ -1,0 +1,12 @@
+.logo {
+  @include center;
+  @include borderHover;
+  font-size: 125%;
+  font-weight: bold;
+  text-decoration: none;
+
+  img {
+    width: 75px;
+    margin-right: 10px;
+  }
+}

@@ -1,0 +1,27 @@
+.Navbar {
+  width: 100%;
+  height: fit-content;
+  padding: 5px 25px;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .nav_options {
+    @include center;
+
+    .navbar_option {
+      display: flex;
+      flex-direction: column;
+      @include borderHover;
+
+      .navbar_option_firstLine {
+        font-size: 80%;
+      }
+
+      .navbar_option_secondLine {
+        font-weight: bold;
+      }
+    }
+  }
+}
