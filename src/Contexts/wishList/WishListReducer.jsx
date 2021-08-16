@@ -5,7 +5,7 @@ const WishListReducer = (state, action) => {
     case 'ADD_TO_WISHLIST':
       return [product, ...state]
     case 'REMOVE_FROM_WISHLIST':
-      return state.filter(item => item.asin !== product.asin)
+      return state.filter(item => item !== product)
     case 'CLEAR_WISHLIST':
       return []
     default:

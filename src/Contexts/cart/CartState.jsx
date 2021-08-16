@@ -6,28 +6,25 @@ const CartState = ({children}) => {
   const initialState = localStorage.getItem('wishList') === null ? [] : JSON.parse(localStorage.getItem('wishList'))
   const [cart, dispatch] = useReducer(CartReducer, initialState)
 
-  const addToCart = product => ({
-    type: 'ADD_TO_CART',
-    payload: product
-  })
+  const addToCart = id => {
+    dispatch({type: 'ADD_TO_CART', payload: id})
+  }
 
-  const decrementItemQuantity = product => ({
-    type: 'DECREMENT_QUANTITY',
-    payload: product
-  })
+  const decrementItemQuantity = id => {
+    dispatch({type: 'DECREMENT_QUANTITY', payload: id})
+  }
 
-  const removeFromCart = product => ({
-    type: 'REMOVE_FROM_CART',
-    payload: product
-  })
+  const removeFromCart = id => {
+    dispatch({type: 'REMOVE_FROM_CART', payload: id})
+  }
 
-  const clearCart = () => ({
-    type: 'CLEAR_CART'
-  })
+  const clearCart = () => {
+    dispatch({type: 'CLEAR_CART'})
+  }
 
-  const checkOut = () => ({
-    type: 'CHECKOUT'
-  })
+  const checkOut = () => {
+    dispatch({type: 'CHECKOUT'})
+  }
 
   useEffect(()=>{
     localStorage.setItem('localCart', JSON.stringify(cart))

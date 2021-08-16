@@ -1,0 +1,14 @@
+.ProductPage {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 0.5fr 2fr auto;
+  grid-template-areas: 
+  "header header"
+  "images info"
+  "reviews reviews";
+
+  .header {
+    grid-area: header;
+  }
+}

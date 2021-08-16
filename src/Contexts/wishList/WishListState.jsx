@@ -4,17 +4,21 @@ import WishListReducer from './WishListReducer'
 
 const WishListState = ({children}) => {
   const initialState = localStorage.getItem('wishList') === null ? [] : JSON.parse(localStorage.getItem('wishList'))
-  const [wishList, dispatch] = useReducer(WishListReducer)
+  const [wishList, dispatch] = useReducer(WishListReducer, initialState)
 
-  const addToWishList = product => ({
+  const addToWishList = id => {
+    console.log(id);
+    dispatch({
     type: 'ADD_TO_WISHLIST',
-    payload: product
-  })
+    payload: id
+  })}
 
-  const removeFromWishLIst = product => ({
-    type: 'REMOVE_FROM_WISHLIST',
-    payload: product
-  })
+  const removeFromWishList = id => {
+    dispatch({
+      type: 'REMOVE_FROM_WISHLIST',
+      payload: id
+    })
+  }
 
   const clearWishList = () => ({
     type: 'CLEAR_WISHLIST'
@@ -25,7 +29,7 @@ const WishListState = ({children}) => {
   }, [wishList])
 
   return (
-    <WishListContext.Provider value={{ wishList, addToWishList, removeFromWishLIst, clearWishList}}>
+    <WishListContext.Provider value={{ wishList, dispatch, addToWishList, removeFromWishList, clearWishList}}>
       {children}
     </WishListContext.Provider>
   )

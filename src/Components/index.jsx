@@ -7,6 +7,7 @@ import SearchContext from '../Contexts/search/SearchContext';
 import CategoryPage from './MainPage/CategoryPage';
 import ProductPage from './ProductPage/ProductPage'
 import SearchedPage from './MainPage/SearchedPage';
+import CheckOut from './MainPage/CheckOut';
 
 // ==========================================================================================================================================
 // it is not possible to continue using the API and therefore, I am using the same products on all pages (stored in localStorage only for testing purposes). 
@@ -26,6 +27,7 @@ const Index = () => {
             <Route path='/search/:searchTerm' exact component={SearchedPage} />
             <Route path='/:categoryName' exact component={CategoryPage} />
             <Route path='/product/:productID' exact component={ProductPage} />
+            <Route path='/basket/checkout' exact component={CheckOut} />
           </main>
         </Switch>
       </Router>

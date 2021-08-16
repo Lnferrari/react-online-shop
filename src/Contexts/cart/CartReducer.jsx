@@ -1,11 +1,11 @@
 import SearchState from "../search/SearchState"
 
 const CartReducer = (state, action) => {
-  const product = action.payload;
+  const {product} = action.payload;
   switch (action.type) {
     case 'ADD_TO_CART':
-      return state.find(item => item.asin === product.asin)
-        ? state.map(item => item.name === product.asin
+      return state.find(item => item === product)
+        ? state.map(item => item === product
           ? {
               ...item,
               quantity: item.quantity + 1
@@ -13,11 +13,11 @@ const CartReducer = (state, action) => {
           : item)
         : [...state, { ...product, quantity: 1 }]
     case 'REMOVE_FROM_CART':
-      return state.filter(item => item.asin !== product.asin)
+      return state.filter(item => item !== product)
     case 'DECREMENT_QUANTITY':
-      return state.find(item => item.asin === product.asin)?.quantity === 1
-        ? state.filter(item => item.asin !== product.asin)
-        : state.map(item => item.asin === product.asin
+      return state.find(item => item === product)?.quantity === 1
+        ? state.filter(item => item !== product)
+        : state.map(item => item === product
           ? {
              ...item,
              quantity: item.quantity - 1
