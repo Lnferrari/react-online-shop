@@ -2,23 +2,30 @@ import React, { useState, useEffect, useContext } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './Header/index'
 import Home from './MainPage/Home';
-import SideBar from './SideBar/SideBar';
 import SideBarContext from './../Contexts/sideBar/SideBarContext';
+import SearchContext from '../Contexts/search/SearchContext';
+import CategoryPage from './MainPage/CategoryPage';
+import ProductPage from './ProductPage/ProductPage'
+import SearchedPage from './MainPage/SearchedPage';
 
+// ==========================================================================================================================================
+// it is not possible to continue using the API and therefore, I am using the same products on all pages (stored in localStorage only for testing purposes). 
+// ==========================================================================================================================================
 
 const Index = () => {
   const {isToggled} = useContext(SideBarContext)
+  const {searchInput} = useContext(SearchContext)
 
   return (
     <React.Fragment>
       <Router>
         <Header />
-        {isToggled && <SideBar  />}
         <Switch>
-          <main>
+          <main className={isToggled ? 'inactive' : ''}>
             <Route path='/' exact component={Home} />
-            <Route />
-            <Route />
+            <Route path='/search/:searchTerm' exact component={SearchedPage} />
+            <Route path='/category/:categoryName' exact component={CategoryPage} />
+            <Route path='/product/:productID' exact component={ProductPage} />
           </main>
         </Switch>
       </Router>

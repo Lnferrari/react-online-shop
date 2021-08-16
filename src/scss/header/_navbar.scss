@@ -2,17 +2,16 @@
   width: 100%;
   height: fit-content;
   padding: 5px 25px;
+  background-color: $first-color;
   align-self: flex-start;
-  display: flex;
-  align-items: center;
+  @include center;
   justify-content: space-between;
 
   .nav_options {
     @include center;
 
     .navbar_option {
-      display: flex;
-      flex-direction: column;
+      @include flex-column;
       @include borderHover;
 
       .navbar_option_firstLine {

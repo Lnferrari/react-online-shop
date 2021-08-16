@@ -1,14 +1,17 @@
 .SideBar {
-  max-width: 320px;
-  max-height: calc(100vh - 113.02px);
-  // background-color: rgba(255, 0, 0, 0.8);
-  padding-bottom: 15px;
-  display: flex;
-  flex-direction: column;
+  width: 300px;
+  height: calc(100vh - 113.02px);
+  background-color: white;
+  align-self: flex-start;
+  @include flex-column;
   overflow-y: scroll;
+  position: relative;
+  left: -300px;
+  transition: left .25s ease-out;
+  z-index: 9999;
 
   &::-webkit-scrollbar {
-    width: 16px;
+    width: 12px;
   }
 
   &::-webkit-scrollbar-track {
@@ -16,10 +19,8 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.8);
-    border: 4px solid $first-color;
+    background: black;
     border-radius: 25px;
-
   }
 
   .SideBar_user {
@@ -35,16 +36,15 @@
   }
 
   .SideBar_categories {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     font-size: 90%;
     cursor: pointer;
 
     .SideBar_category {
-      padding: 15px 20px;
+      padding: 10px 20px;
       text-decoration: none;
       color: black;
-      font-weight: 500;
+      border-bottom: 1px solid black;
 
       &:hover {
         background-color: #ef4f1d;
@@ -56,4 +56,9 @@
       }
     }
   }
+}
+
+.active {
+  left: 0px;
+  transition: left .25s ease-in;
 }

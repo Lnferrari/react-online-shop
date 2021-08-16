@@ -5,6 +5,12 @@
   align-items: center;
 }
 
+// flex column
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 // borderHover
 @mixin borderHover {
   padding: 5px 10px;

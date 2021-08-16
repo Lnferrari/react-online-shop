@@ -1,7 +1,5 @@
 header {
   width: 100%;
-  background-color: $first-color;
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   align-items: center;
 }

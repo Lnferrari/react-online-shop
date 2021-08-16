@@ -9,6 +9,7 @@ const Header = () => {
     <header>
       <Navbar />
       <SubNavbar />
+      <SideBar />
     </header>
   )
 }

@@ -13,5 +13,28 @@
     height: 100vh;
     font-size: 18px;
     font-family: Montserrat, sans-serif;
+    overflow-x: hidden;
+
+    #root {
+
+      main {
+        width: 100%;
+        height: calc(100vh - 113.02px);
+        padding: 0 260px;
+        position: absolute;
+        top: 113.02px;
+
+        section {
+          padding: 10px 0;
+        }
+      }
+
+      .inactive {
+        overflow: hidden;
+        filter: brightness(60%);
+        transition: all .5s;
+      }
+    }
+
   }
 }
