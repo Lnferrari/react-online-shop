@@ -7,7 +7,7 @@ import SearchContext from '../../Contexts/search/SearchContext'
 import WishListContext from '../../Contexts/wishList/WishListContext'
 import CartContext from '../../Contexts/cart/CartContext'
 
-const ProductCard = ({onClick, wish, img, id, asin, title, rank, rating, total_rating, category, price}) => {
+const ProductCard = ({onClick, wish, img, id, asin, title, rank, rating, total_rating, delivery, price}) => {
   const [hoveredProductId, setHoveredProductId] = useState()
   const {productList, productInfo, setProductInfo, API_KEY} = useContext(SearchContext)
   const {wishList, addToWishList, removeFromWishLIst} = useContext(WishListContext)
@@ -20,16 +20,16 @@ const ProductCard = ({onClick, wish, img, id, asin, title, rank, rating, total_r
   //   })
   // }
 
-  const getProductInfo = async () => {
-    let newData = []
-    productList.map(async(item) => {
-      const apiResponse = await axios(`https://api.rainforestapi.com/request?api_key=${API_KEY}&type=product&amazon_domain=amazon.com&asin=${item.asin}`)
-      console.log(apiResponse)
-      const productData = await apiResponse.data.product
-      newData = [...newData, productData]
-      setProductInfo(newData)
-    })
-  }
+  // const getProductInfo = async () => {
+  //   let newData = []
+  //   productList.map(async(item) => {
+  //     const apiResponse = await axios(`https://api.rainforestapi.com/request?api_key=${API_KEY}&type=product&amazon_domain=amazon.com&asin=${item.asin}`)
+  //     console.log(apiResponse)
+  //     const productData = await apiResponse.data.product
+  //     newData = [...newData, productData]
+  //     setProductInfo(newData)
+  //   })
+  // }
 
 
   const handleMouseOver = e => {
@@ -67,10 +67,13 @@ const ProductCard = ({onClick, wish, img, id, asin, title, rank, rating, total_r
             $
             <span>{price}</span>
           </div>
-          <div className='delivery-date'>
-            Get it
-            <span className='bold'></span>
-          </div>
+          {
+            delivery &&
+            <div className='delivery-date'>
+              Get it
+              <span className='bold'>{delivery}</span>
+            </div>
+          }
         </div>
       </Link>
     </div>

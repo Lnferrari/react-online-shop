@@ -14,7 +14,7 @@ const Home = () => {
   
   const API_URL = process.env.REACT_APP_API_URL
 
-  const fetchDeals = async (type, catID) => {
+  const fetchDeals = async () => {
     // const apiResponse = await axios(`https://api.rainforestapi.com/request?api_key=${API_KEY}&type=deals&amazon_domain=amazon.com&deal_types=best_deal`)
     const apiResponse = await axios(`https://api.rainforestapi.com/request?api_key=${API_KEY}&type=deals&amazon_domain=amazon.com&deal_types=deal_of_the_day`)
     const apiResult = await apiResponse.data.deals_results
@@ -32,6 +32,9 @@ const Home = () => {
     })
   }
 
+  // useEffect(()=>{
+  //   fetchDeals()
+  // }, [])
 
   // useEffect(()=>{
   //   getProductInfo()

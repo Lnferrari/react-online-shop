@@ -21,6 +21,18 @@ const SearchBar = () => {
       const apiResult = await apiResponse.data
       setProductList(apiResult.search_results)
       setRelatedSearches(apiResult.related_searches)
+      // const options = {
+      //   method: 'GET',
+      //   url: 'https://tvb-amazon-data-scraper.p.rapidapi.com/search/MacBook%20Air',
+      //   params: {api_key: 'a438be699e1c4f2b1e62ff649419355b'},
+      //   headers: {
+      //     'x-rapidapi-key': '9515fb6270mshf72d632d3de48a7p1c263djsnec4ad8df2195',
+      //     'x-rapidapi-host': 'tvb-amazon-data-scraper.p.rapidapi.com'
+      //   }
+      // };
+      // const apiRespone = await axios(options)
+      // const apiResult = await apiRespone.data
+      // console.log(apiResult)
       // setProductList(bestsellers)
       // setRelatedSearches(['possibility', 'possibility', 'possibility', 'possibility', 'possibility', 'possibility', ])
     }
