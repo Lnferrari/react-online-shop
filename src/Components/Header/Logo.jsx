@@ -4,9 +4,9 @@ import logo from '../../assets/logo.png'
 
 const Logo = () => {
   return (
-      <Link to='/react-online-shop' className='logo'>
+      <Link to='/' className='logo'>
           <img src={logo} alt="company logo" />
-          mercado<br />libre
+          online<br />store
       </Link>
   )
 }

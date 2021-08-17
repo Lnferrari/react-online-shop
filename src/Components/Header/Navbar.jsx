@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from './Logo'
 import SearchBar from './SearchBar'
+import WishList from './WishList'
 import ShopCart from './ShopCart'
 
 const Navbar = () => {
@@ -17,6 +18,7 @@ const Navbar = () => {
             Sign In
           </span>
         </div>
+        <WishList />
         <div className='navbar_option'>
           <span className='navbar_option_firstLine'>
             Returns
@@ -25,6 +27,7 @@ const Navbar = () => {
             & Orders
           </span>
         </div>
+        
         <ShopCart />
       </div>
     </nav>

@@ -1,18 +1,19 @@
-.Cart {
+.WishList {
   margin-top: -1px;
-
   @include center;
   @include borderHover;
   position: relative;
 
   span {
-    font-size: 90%;
+    font-size: 80%;
     padding: 1px;
     align-self: flex-end;
     @include center;
     font-weight: bold;
     letter-spacing: 0.5px;
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     color: black;
   }
 }

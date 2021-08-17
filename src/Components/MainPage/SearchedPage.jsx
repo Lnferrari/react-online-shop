@@ -6,9 +6,7 @@ import ProductCard from '../ProductCard/PruductCard'
 
 const SearchedPage = () => {
   const {searchedTerm} = useParams()
-  const {productList, productInfo, setProductInfo, relatedSearches, API_KEY} = useContext(SearchContext)
-  const bestsellers = JSON.parse(localStorage.getItem('bestsellers'))
-
+  const {productList, API_KEY} = useContext(SearchContext)
   // const productsMarkUp = bestsellers.map(item => (
   //   <ProductCard key={item.asin} asin={item.asin} img={item.image} title={item.title} rank={item.rank} rating={item.rating} total_rating={item.ratings_total} category={item.current_category.id} price={item.price.value} />
   // ))
@@ -17,20 +15,11 @@ const SearchedPage = () => {
   return (
     <section className='SearchedPage'>
       <h1>Results for <span className='searchedTerm'>{searchedTerm}</span></h1>
-      <div className='relatedSearches'>
-        {
-          relatedSearches.map(item => (
-            <div className='relatedSearch'>
-              <FaSearch />
-              {item.query}
-            </div>
-          ))
-        }
-      </div>
       {
-        productList && productList.map(item => (
-          <ProductCard key={item.asin} asin={item.asin} img={item.image} title={item.title} rank={item.rank} rating={item.rating} total_rating={item.ratings_total} price={item.price.value} />
-        ))
+        productList && productList.map(item => {
+          const asin = item.url.split('/')[5]
+          return (<ProductCard key={asin} asin={asin} img={item.image} bestseller={item.is_best_seller} title={item.name} rating={item.stars} price={item.price} />)
+        })
       }
     </section>
   )

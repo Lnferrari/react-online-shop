@@ -4,18 +4,32 @@ import {FaUserCircle} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import SideBarContext from '../../Contexts/sideBar/SideBarContext';
 import SearchContext from '../../Contexts/search/SearchContext';
+import { useEffect } from 'react';
 
 const SideBar = () => {
   const {isToggled} = useContext(SideBarContext)
   const {API_KEY} = useContext(SearchContext)
-  const storedCategories = JSON.parse(localStorage.getItem('categories2'))
+  const storedCategories = JSON.parse(localStorage.getItem('categories3'))
 
   const getCategories = async () => {
-    const apiResponse = await axios(`https://api.rainforestapi.com/categories?api_key=${API_KEY}&amazon_domain=amazon.com&type=bestsellers&bestsellers_type=bestsellers`)
-    const apiData = await apiResponse.data.categories
+    const options = {
+      url: 'https://amazon-product4.p.rapidapi.com/category/list',
+      params: {country: 'US'},
+      headers: {
+        'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY,
+        'x-rapidapi-host': 'amazon-product4.p.rapidapi.com'
+      }
+    };
+    const apiResponse = await axios(options)
+    let apiData = await apiResponse.data
+    apiData = Object.keys(apiData).map(key => apiData[key])
     console.log(apiData)
-    localStorage.setItem('categories2', JSON.stringify(apiData))
+    localStorage.setItem('categories3', JSON.stringify(apiData))
   };
+
+  // useEffect(()=>{
+  //   getCategories()
+  // }, [])
 
   return (
     <div className={isToggled ? 'SideBar active' : 'SideBar'}>
@@ -25,7 +39,7 @@ const SideBar = () => {
       </div>
       <div className="SideBar_categories">
         {storedCategories && storedCategories.map(category => (
-          <Link to={`/category/${category.name}`} className="SideBar_category" key={category.id} id={category.id}>
+          <Link to={`/category/${category.category}`} className="SideBar_category" key={category.category}>
             {category.name}
           </Link>
         ))}

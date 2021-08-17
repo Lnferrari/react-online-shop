@@ -1,5 +1,4 @@
-import React from 'react'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import {FaShoppingBag} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import CartContext from '../../Contexts/cart/CartContext'

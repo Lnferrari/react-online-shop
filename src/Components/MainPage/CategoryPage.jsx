@@ -3,22 +3,38 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import SearchContext from '../../Contexts/search/SearchContext'
 import ProductCard from '../ProductCard/PruductCard'
+import { useState } from 'react'
 
 const CategoryPage = () => {
   const {categoryName} = useParams()
   const bestsellers = JSON.parse(localStorage.getItem('bestsellers'))
-  const {productList, productInfo, setProductInfo} = useContext(SearchContext)
-  
+  const [categoryProducts, setCategoryProducts] = useState([])
+  const {productList, productInfo, setProductInfo, MY_API_KEY, RAPIDAPI_KEY, PRODUCTS_API_KEY} = useContext(SearchContext)
 
-  const API_KEY = process.env.REACT_APP_API_KEY_DETAILS
-  const RAPIDAPI_KEY = process.env.REACT_APP_RAPIDAPI_KEY
+  const getCategoryProducts = async () => {
+    const options = {
+      url: 'https://amazon24.p.rapidapi.com/api/product',
+      params: {categoryID: categoryName, country: 'US'},
+      headers: {
+        'x-rapidapi-key': PRODUCTS_API_KEY,
+        'x-rapidapi-host': 'amazon24.p.rapidapi.com'
+      }
+    };
+    const apiResponse = await axios(options)
+    const apiResult = await apiResponse.data.docs
+    apiResult.map(item => {
+
+    })
+    console.log(apiResult)
+    setCategoryProducts(apiResult)
+  }
 
   const getProductData = async () => {
     let newData = []
     bestsellers.map(async item => {
       const options = {
         url: `https://tvb-amazon-data-scraper.p.rapidapi.com/products/${item.asin}`,
-        params: {api_key: API_KEY},
+        params: {api_key: MY_API_KEY},
         headers: {
           'x-rapidapi-key': RAPIDAPI_KEY,
           'x-rapidapi-host': 'tvb-amazon-data-scraper.p.rapidapi.com'
@@ -36,15 +52,15 @@ const CategoryPage = () => {
   }
 
   // useEffect(() => {
-  //   getProductData()
-  // }, [bestsellers])
+  //   getCategoryProducts()
+  // }, [])
   
   return (
     <section className='Category'>
       <h1>Category: {categoryName}</h1>
       {
-        bestsellers && bestsellers.map(item => (
-          <ProductCard key={item.asin} asin={item.asin} img={item.image} title={item.title} rank={item.rank} rating={item.rating} total_rating={item.ratings_total} category={item.current_category.id} price={item.price.value} />
+        productInfo && productInfo.map(item => (
+          <ProductCard key={item.product_information.ASIN} asin={item.product_information.ASIN} img={item.images[0]} title={item.name} rating={item.average_rating} total_reviews={item.total_reviews} model={item.model} price={item.pricing.slice(1)} />
         ))
       }
     </section>

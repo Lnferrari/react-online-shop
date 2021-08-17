@@ -5,8 +5,7 @@ import SearchContext from '../../Contexts/search/SearchContext'
 import { useHistory } from 'react-router-dom'
 
 const SearchBar = () => {
-  const {searchInput, setSearchInput, setProductList, relatedSearches, setRelatedSearches, API_KEY} = useContext(SearchContext)
-  const bestsellers = JSON.parse(localStorage.getItem('bestsellers'))
+  const {searchInput, setSearchInput, setProductList, MY_API_KEY, RAPIDAPI_KEY} = useContext(SearchContext)
   const history = useHistory()
 
   const handleChange = e => {
@@ -17,24 +16,17 @@ const SearchBar = () => {
     e.preventDefault()
     console.log('searching...')
     if (searchInput !== ''){
-      const apiResponse = await axios(`https://api.rainforestapi.com/request?api_key=${API_KEY}&type=search&amazon_domain=amazon.com&search_term=${searchInput}`)
-      const apiResult = await apiResponse.data
-      setProductList(apiResult.search_results)
-      setRelatedSearches(apiResult.related_searches)
-      // const options = {
-      //   method: 'GET',
-      //   url: 'https://tvb-amazon-data-scraper.p.rapidapi.com/search/MacBook%20Air',
-      //   params: {api_key: 'a438be699e1c4f2b1e62ff649419355b'},
-      //   headers: {
-      //     'x-rapidapi-key': '9515fb6270mshf72d632d3de48a7p1c263djsnec4ad8df2195',
-      //     'x-rapidapi-host': 'tvb-amazon-data-scraper.p.rapidapi.com'
-      //   }
-      // };
-      // const apiRespone = await axios(options)
-      // const apiResult = await apiRespone.data
-      // console.log(apiResult)
-      // setProductList(bestsellers)
-      // setRelatedSearches(['possibility', 'possibility', 'possibility', 'possibility', 'possibility', 'possibility', ])
+      const options = {
+        url: `https://tvb-amazon-data-scraper.p.rapidapi.com/search/${searchInput}`,
+        params: {api_key: MY_API_KEY},
+        headers: {
+          'x-rapidapi-key': RAPIDAPI_KEY,
+          'x-rapidapi-host': 'tvb-amazon-data-scraper.p.rapidapi.com'
+        }
+      };
+      const apiRespone = await axios(options)
+      const apiResult = await apiRespone.data.results
+      setProductList(apiResult)
     }
     history.push(`/search/${searchInput}`)
   }
