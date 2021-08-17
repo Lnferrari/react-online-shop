@@ -1,12 +1,13 @@
 .Cart {
   // margin-top: -4px;
+
   @include center;
   @include borderHover;
   position: relative;
 
   span {
     font-size: 90%;
-    padding: 2px;
+    padding: 1px;
     align-self: flex-end;
     @include center;
     font-weight: bold;

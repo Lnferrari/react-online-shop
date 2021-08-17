@@ -9,7 +9,7 @@ const ShopCart = () => {
   
   return (
     <Link to='/basket/checkout' className='Cart'>
-      <FaShoppingBag size={38} />
+      <FaShoppingBag size={36} />
       <span>{cart.length}</span>
     </Link>
   )

@@ -25,7 +25,7 @@ const Index = () => {
           <main className={isToggled ? 'inactive' : ''}>
             <Route path='/' exact component={Home} />
             <Route path='/search/:searchTerm' exact component={SearchedPage} />
-            <Route path='/:categoryName' exact component={CategoryPage} />
+            <Route path='/category/:categoryName' exact component={CategoryPage} />
             <Route path='/product/:productID' exact component={ProductPage} />
             <Route path='/basket/checkout' exact component={CheckOut} />
           </main>

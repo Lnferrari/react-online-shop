@@ -25,7 +25,7 @@ const SideBar = () => {
       </div>
       <div className="SideBar_categories">
         {storedCategories && storedCategories.map(category => (
-          <Link to={`/${category.name}`} className="SideBar_category" key={category.id} id={category.id}>
+          <Link to={`/category/${category.name}`} className="SideBar_category" key={category.id} id={category.id}>
             {category.name}
           </Link>
         ))}

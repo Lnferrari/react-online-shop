@@ -3,7 +3,7 @@ import WishListContext from './WishListContext'
 import WishListReducer from './WishListReducer'
 
 const WishListState = ({children}) => {
-  const initialState = localStorage.getItem('wishList') === null ? [] : JSON.parse(localStorage.getItem('wishList'))
+  const initialState = localStorage.getItem('localWishList') === null ? [] : JSON.parse(localStorage.getItem('localWishList'))
   const [wishList, dispatch] = useReducer(WishListReducer, initialState)
 
   const addToWishList = id => {

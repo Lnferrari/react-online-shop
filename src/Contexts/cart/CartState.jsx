@@ -3,7 +3,7 @@ import CartReducer from './CartReducer';
 import CartContext from './CartContext'
 
 const CartState = ({children}) => {
-  const initialState = localStorage.getItem('wishList') === null ? [] : JSON.parse(localStorage.getItem('wishList'))
+  const initialState = localStorage.getItem('localCart') === null ? [] : JSON.parse(localStorage.getItem('localCart'))
   const [cart, dispatch] = useReducer(CartReducer, initialState)
 
   const addToCart = id => {
