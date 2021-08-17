@@ -8,7 +8,6 @@ import CartContext from '../../Contexts/cart/CartContext'
 
 const ProductPage = () => {
   const {productID} = useParams();
-  
   const [productInfo, setProductInfo] = useState()
   const {wishList, addToWishList, removeFromWishList} = useContext(WishListContext)
   const {cart, addToCart} = useContext(CartContext)
@@ -38,20 +37,6 @@ const ProductPage = () => {
     }
   }
 
-  const addToWishListHandler = id => {
-    addToWishList(id)
-  }
-
-  const removeFromWishListHandler = id => {
-    removeFromWishList(id)
-  }
-
-  const addToCartHandler = id => {
-    addToCart(id)
-  }
-
-
-
 
   useEffect(()=>{
     getProductInfo()
@@ -78,14 +63,14 @@ const ProductPage = () => {
         <div className='product-info'>
           <div className="price"></div>
           <div className='buttons'>
-            <button onClick={()=>addToCartHandler(productID)}>Add to Basket</button>
+            <button onClick={()=>addToCart(productID)}>Add to Basket</button>
             {
               wishList && wishList.includes(productID)
               ? <button>
-                  <FaHeart onClick={()=>removeFromWishListHandler(productID)} />
+                  <FaHeart onClick={()=>removeFromWishList(productID)} />
                 </button>
               : <button>
-                  <FaRegHeart onClick={()=>addToWishListHandler(productID)} />
+                  <FaRegHeart onClick={()=>addToWishList(productID)} />
                 </button>
             }
           </div>

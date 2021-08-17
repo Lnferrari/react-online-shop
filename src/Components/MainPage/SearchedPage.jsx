@@ -14,25 +14,24 @@ const SearchedPage = () => {
   // ))
 
 
-
-  const productsMarkUp = productList.map(item => (
-    <ProductCard key={item.asin} asin={item.asin} img={item.image} title={item.title} rank={item.rank} rating={item.rating} total_rating={item.ratings_total} price={item.price.value} />
-  ))
-  
-  const relatedSearchesMarkUp = relatedSearches.map(item => (
-    <div className='relatedSearch'>
-      <FaSearch />
-      {item.query}
-    </div>
-  ))
-
   return (
     <section className='SearchedPage'>
       <h1>Results for <span className='searchedTerm'>{searchedTerm}</span></h1>
       <div className='relatedSearches'>
-        {relatedSearchesMarkUp}
+        {
+          relatedSearches.map(item => (
+            <div className='relatedSearch'>
+              <FaSearch />
+              {item.query}
+            </div>
+          ))
+        }
       </div>
-      {productsMarkUp}
+      {
+        productList && productList.map(item => (
+          <ProductCard key={item.asin} asin={item.asin} img={item.image} title={item.title} rank={item.rank} rating={item.rating} total_rating={item.ratings_total} price={item.price.value} />
+        ))
+      }
     </section>
   )
 }

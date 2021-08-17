@@ -7,22 +7,16 @@ const WishListState = ({children}) => {
   const [wishList, dispatch] = useReducer(WishListReducer, initialState)
 
   const addToWishList = id => {
-    console.log(id);
-    dispatch({
-    type: 'ADD_TO_WISHLIST',
-    payload: id
-  })}
-
-  const removeFromWishList = id => {
-    dispatch({
-      type: 'REMOVE_FROM_WISHLIST',
-      payload: id
-    })
+    dispatch({type: 'ADD_TO_WISHLIST', payload: id})
   }
 
-  const clearWishList = () => ({
-    type: 'CLEAR_WISHLIST'
-  })
+  const removeFromWishList = id => {
+    dispatch({type: 'REMOVE_FROM_WISHLIST', payload: id})
+  }
+
+  const clearWishList = () => {
+    dispatch({type: 'CLEAR_WISHLIST'})
+  }
 
   useEffect(()=>{
     localStorage.setItem('localWishList', JSON.stringify(wishList))
