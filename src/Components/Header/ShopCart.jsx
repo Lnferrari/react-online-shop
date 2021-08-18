@@ -9,7 +9,14 @@ const ShopCart = () => {
   return (
     <Link to='/basket/checkout' className='Cart'>
       <FaShoppingBag size={36} />
-      <span>{cart.length}</span>
+      <span>
+        {
+          cart.reduce((total, item) => {
+            total += item.quantity
+            return total
+          }, 0)
+        }
+      </span>
     </Link>
   )
 }

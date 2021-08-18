@@ -12,6 +12,12 @@ const ProductCard = ({img, asin, title, rating, total_reviews, model, price, bes
 
   return (
     <div className='ProductCard' asin={asin}>
+      {
+        bestseller &&
+        <span className='bestseller-label'>
+          Best Seller
+        </span>
+      }
       <div className='wish'>
         {
           wishList && wishList.includes(asin)
@@ -19,15 +25,23 @@ const ProductCard = ({img, asin, title, rating, total_reviews, model, price, bes
           : <FaRegHeart onClick={()=>addToWishList(asin)} size={25} />
         }
       </div>
-      <Link to={`/product/${asin}`} className='LinkProductCard'>
+      <div className='wrapper'>
         <div className='img-container'>
-          <img src={img} alt={title} />
+          <Link to={`/product/${asin}`}>
+            <img src={img} alt={title} />
+          </Link>
         </div>
         <div className='info-container'>
           <h3>{title}</h3>
           <div className='rating'>
             <RatingStar id={asin} rating={rating} colors={{ rear: '#bebebe', mask: '#b1310a'}} size={20} noBorder />
-            <span>{total_reviews} reviews</span>
+            <span>
+              {
+                total_reviews
+                ? total_reviews + ' reviews'
+                : rating
+              }
+            </span>
           </div>
           <div className='price'>
             {
@@ -48,9 +62,11 @@ const ProductCard = ({img, asin, title, rating, total_reviews, model, price, bes
                 </>
             }
           </div>
-        </div>
-      </Link>
-      <button onClick={()=>addToCart(asin)}>Add to Basket</button>
+          <button onClick={()=>addToCart(asin)}>
+            Add to Basket
+          </button>
+        </div>      
+      </div>
     </div>
   )
 }

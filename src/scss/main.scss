@@ -2,6 +2,7 @@
 @import './header/_header-dir';
 @import './sidebar/_sidebar-dir';
 @import './body/_body-dir';
+@import './shoppingCart/_basket-dir';
 
 * {
   margin: 0;
@@ -20,13 +21,13 @@
       main {
         width: 100%;
         height: calc(100vh - 113.02px);
-        padding: 0 260px;
+        padding: 0 290px;
         position: absolute;
         top: 113.02px;
 
         section {
           width: 100%;
-          padding: 50px 0;
+          padding: 40px;
         }
       }
 

@@ -7,7 +7,8 @@ const SearchState = props => {
   const [productList, setProductList] = useState([])
   const [productInfo, setProductInfo] = useState([])
 
-  const MY_API_KEY = process.env.REACT_APP_API_KEY_DETAILS;
+  const MY_API_KEY = process.env.REACT_APP_MY_API_KEY;
+  const MY_API_KEY_2 = process.env.REACT_APP_MY_API_KEY_2;
   const RAPIDAPI_KEY = process.env.REACT_APP_RAPIDAPI_KEY;
   const PRODUCTS_API_KEY = process.env.REACT_APP_CATEGORYPRODUCTS_KEY
 
@@ -32,7 +33,7 @@ const SearchState = props => {
   }
 
   return (
-    <SearchContext.Provider value={{ searchInput, setSearchInput, productList, setProductList, productInfo, setProductInfo, getProductInfo, MY_API_KEY, RAPIDAPI_KEY, PRODUCTS_API_KEY }}>
+    <SearchContext.Provider value={{ searchInput, setSearchInput, productList, setProductList, productInfo, setProductInfo, getProductInfo, MY_API_KEY, MY_API_KEY_2, RAPIDAPI_KEY, PRODUCTS_API_KEY }}>
       {props.children}
     </SearchContext.Provider>
   )

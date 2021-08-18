@@ -7,7 +7,7 @@ import SearchContext from '../Contexts/search/SearchContext';
 import CategoryPage from './MainPage/CategoryPage';
 import ProductPage from './ProductPage/ProductPage'
 import SearchedPage from './MainPage/SearchedPage';
-import CheckOut from './MainPage/CheckOut';
+import Basket from './MainPage/Basket';
 
 // ==========================================================================================================================================
 // it is not possible to continue using the API and therefore, I am using the same products on all pages (stored in localStorage only for testing purposes). 
@@ -15,7 +15,6 @@ import CheckOut from './MainPage/CheckOut';
 
 const Index = () => {
   const {isToggled} = useContext(SideBarContext)
-  const {searchInput} = useContext(SearchContext)
 
   return (
     <React.Fragment>
@@ -24,10 +23,10 @@ const Index = () => {
         <Switch>
           <main className={isToggled ? 'inactive' : ''}>
             <Route path='/' exact component={Home} />
-            <Route path='/search/:searchTerm' exact component={SearchedPage} />
+            <Route path='/search/:searchedTerm' exact component={SearchedPage} />
             <Route path='/category/:categoryName' exact component={CategoryPage} />
             <Route path='/product/:productID' exact component={ProductPage} />
-            <Route path='/basket/checkout' exact component={CheckOut} />
+            <Route path='/basket/checkout' exact component={Basket} />
           </main>
         </Switch>
       </Router>

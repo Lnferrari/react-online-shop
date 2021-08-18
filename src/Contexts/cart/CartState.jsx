@@ -7,6 +7,7 @@ const CartState = ({children}) => {
   const [cart, dispatch] = useReducer(CartReducer, initialState)
 
   const addToCart = id => {
+    console.log(id)
     dispatch({type: 'ADD_TO_CART', payload: id})
   }
 

@@ -11,23 +11,23 @@ const CategoryPage = () => {
   const [categoryProducts, setCategoryProducts] = useState([])
   const {productList, productInfo, setProductInfo, MY_API_KEY, RAPIDAPI_KEY, PRODUCTS_API_KEY} = useContext(SearchContext)
 
-  const getCategoryProducts = async () => {
-    const options = {
-      url: 'https://amazon24.p.rapidapi.com/api/product',
-      params: {categoryID: categoryName, country: 'US'},
-      headers: {
-        'x-rapidapi-key': PRODUCTS_API_KEY,
-        'x-rapidapi-host': 'amazon24.p.rapidapi.com'
-      }
-    };
-    const apiResponse = await axios(options)
-    const apiResult = await apiResponse.data.docs
-    apiResult.map(item => {
+  // const getCategoryProducts = async () => {
+  //   const options = {
+  //     url: 'https://amazon24.p.rapidapi.com/api/product',
+  //     params: {categoryID: categoryName, country: 'US'},
+  //     headers: {
+  //       'x-rapidapi-key': PRODUCTS_API_KEY,
+  //       'x-rapidapi-host': 'amazon24.p.rapidapi.com'
+  //     }
+  //   };
+  //   const apiResponse = await axios(options)
+  //   const apiResult = await apiResponse.data.docs
+  //   apiResult.map(item => {
 
-    })
-    console.log(apiResult)
-    setCategoryProducts(apiResult)
-  }
+  //   })
+  //   console.log(apiResult)
+  //   setCategoryProducts(apiResult)
+  // }
 
   const getProductData = async () => {
     let newData = []
